@@ -11,16 +11,15 @@ notes.post('/', (req,res) => {
     const {title,text} = req.body
     if(title && text){
         const newNote = {
-            id: uuidv4,
+            id: uuidv4(),
             title,
             text
         }
         notesData.push(newNote)
         fs.writeFile('./db/db.json',JSON.stringify(notesData), (err) => {
             if(err) console.log(err)
-            else res.json(newNote)
         })
-
+        res.json(newNote)
     }
 })
 
